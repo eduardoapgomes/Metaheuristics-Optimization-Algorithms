@@ -7,7 +7,7 @@ This repository contains a collection of metaheuristic algorithms applied to opt
 
 Solving the 8-Queens problem using Python’s VNS algorithm and chess package
 
----
+
 
 ### 8-Queens Optimization Solution using Variable Neighborhood Search (VNS)
 
@@ -23,11 +23,11 @@ In addition, we provide an analysis of the VNS algorithm’s performance on the 
 
 Our solution is organized into the following sections, implemented in the following order:
 
-1. N-Queens Chess Board Modeling
-2. VNS Optimization Modeling
-3. Optimization Algorithm
-4. Data Management
-5. Optimization Results and Analysis
+1.  N-Queens Chess Board Modeling
+2.  VNS Optimization Modeling
+3.  Optimization Algorithm
+4.  Data Management
+5.  Optimization Results and Analysis
 
 #### N-Queens Chess Board Modeling
 
@@ -57,27 +57,28 @@ The VNS algorithm requires a set of functionalities to develop an optimization a
 
 The Neighborhood Automation module generates and modifies a set of binary vectors used as neighbors. It includes functions for generating random binary vectors with a specified number of ones and length, modifying neighbors by randomly changing the position of k 1’s in the vector, and converting neighbors to binary.
 
-> **gen neighborhood**(NumberOfNeighbohrs, NuberofOnes,ProblemSize): generates a set of NumberOfNeighbohrs random binary vectors of length ProblemSize with NuberofOnes ones randomly placed within each vector. These vectors are used as the initial set of neighbors in the optimization algorithm.
+> **gen neighborhood**(NumberOfNeighbohrs, NuberofOnes,ProblemSize): generates a set of NumberOfNeighbohrs random binary vectors of length ProblemSize with NuberofOnes ones randomly placed within each vector. These vectors are used as the initial set of neighbors in the optimization algorithm.  
 > **gen neighbor**(NuberofOnes,ProblemSize): generates a random binary vector of length ProblemSize with NuberofOnes ones randomly placed within the vector.
 
 #### Neighborhood modifier
 
-> **random neighborhood**(neighborhood,k): apply the random\_neighbor method in a loop for a set of neighbors. The number of bits to modify can be set with k.
+> **random neighborhood**(neighborhood,k): apply the random\_neighbor method in a loop for a set of neighbors. The number of bits to modify can be set with k.  
 > **random neighbor**(bit,k): takes a binary vector (bit) as input and randomly changes the positions of k 1’s in the vector. For each of the k bits, it first selects a random index where a 1 currently exists in the vector, sets it to 0, and then selects another random index where a 0 currently exists and sets it to 1. The function preserves the total number of 1’s in the vector but changes the positions of k 1's.
 
 #### Complementary Functions
 
-> **gen neighbor int**(NuberofOnes,ProblemSize): define a random neighbor considering a list of integers that define the binary 1.
+> **gen neighbor int**(NuberofOnes,ProblemSize): define a random neighbor considering a list of integers that define the binary 1.  
 > **neighbor to binary**(neighbor,ProblemSize): converts the integer solution to binary.
 
 #### Objective Function Automation
 
 The Objective function Automation module provides functions for computing the objective value for an optimization problem. It includes functions for computing the objective value for a given objective function, checking if new neighbors minimize the objective function globally or locally, and for checking if the solution has been found.
 
-> **objective function**(bit): Compute the objective value for a given objective function to optimize the placement of N-Queens on a Chessboard.
-> neighborhood\_objective\_function(neighborhood): Compute the objective value for a VNS using a given objective function.
-> **is objective minimizing**(new\_objective,objective): Check if new neighbors minimize the objective function globally.
-> **is any local objective minimizing**(new\_objective,objective): Check if any neighbor is minimizing the objective function locally.
+
+> **objective function**(bit): Compute the objective value for a given objective function to optimize the placement of N-Queens on a Chessboard.  
+> neighborhood\_objective\_function(neighborhood): Compute the objective value for a VNS using a given objective function.  
+> **is objective minimizing**(new\_objective,objective): Check if new neighbors minimize the objective function globally.  
+> **is any local objective minimizing**(new\_objective,objective): Check if any neighbor is minimizing the objective function locally.  
 > is stop criteria(objective): Check if the solution was found.
 
 #### Neighborhood Update
@@ -90,12 +91,12 @@ The Neighborhood Update module provides a function for deciding on the updating 
 
 The VNS is an optimization algorithm that can be used to solve the N-Queens placement problem. The algorithm works by iteratively searching for a better solution by exploring different neighborhoods of the current solution. The algorithm consists of the following steps:
 
-1. **Start**: The algorithm starts by generating an initial solution to the problem. In the case of the 8-Queens placement problem, this involves placing eight queens on the chessboard such that no two queens threaten each other. Additionally, the algorithm initiates optimization parameters, such as the maximum number of iterations, the number of neighbors, and the diversification parameter, _k\_máx_.
-2. **Shaking**: In this step, the algorithm generates a new solution by modifying the current solution. Specifically, each queen is moved to a new randomly chosen position within its own column. The number of queens that are moved is controlled by the diversification parameter, _k_. The shaking step is important because it allows the algorithm to escape local optima and explore different regions of the solution space.
-3. **Change Neighborhood Strategy**: The number of queens that are allowed to move is controlled by the diversification parameter, _k_. If the optimization criteria do not improve after a certain number of iterations, the algorithm modifies _k_ by setting _k ← k+1_. This strategy helps to balance exploration and exploitation of the solution space.
-4. **Local Search**: The algorithm updates the solution by modifying all neighbors that minimize the objective function locally. In the case of the N-Queens placement problem, the objective function is to minimize the number of pairs of queens that threaten each other. The local search step is important because it allows the algorithm to exploit promising regions of the solution space.
-5. **Optimal Solution**: The neighbor that minimizes the objective function returns as the algorithm’s solution. In the case of the 8-Queens placement problem, the optimal solution is a placement of eight queens on the chessboard such that no two queens threaten each other.
-6. **Stop Criteria**: The iterative optimization process stops if the minimization condition is achieved. In the case of the 8-Queens placement problem, this means that no two queens threaten each other in the final solution.
+1.  **Start**: The algorithm starts by generating an initial solution to the problem. In the case of the 8-Queens placement problem, this involves placing eight queens on the chessboard such that no two queens threaten each other. Additionally, the algorithm initiates optimization parameters, such as the maximum number of iterations, the number of neighbors, and the diversification parameter, _k\_máx_.
+2.  **Shaking**: In this step, the algorithm generates a new solution by modifying the current solution. Specifically, each queen is moved to a new randomly chosen position within its own column. The number of queens that are moved is controlled by the diversification parameter, _k_. The shaking step is important because it allows the algorithm to escape local optima and explore different regions of the solution space.
+3.  **Change Neighborhood Strategy**: The number of queens that are allowed to move is controlled by the diversification parameter, _k_. If the optimization criteria do not improve after a certain number of iterations, the algorithm modifies _k_ by setting _k ← k+1_. This strategy helps to balance exploration and exploitation of the solution space.
+4.  **Local Search**: The algorithm updates the solution by modifying all neighbors that minimize the objective function locally. In the case of the N-Queens placement problem, the objective function is to minimize the number of pairs of queens that threaten each other. The local search step is important because it allows the algorithm to exploit promising regions of the solution space.
+5.  **Optimal Solution**: The neighbor that minimizes the objective function returns as the algorithm’s solution. In the case of the 8-Queens placement problem, the optimal solution is a placement of eight queens on the chessboard such that no two queens threaten each other.
+6.  **Stop Criteria**: The iterative optimization process stops if the minimization condition is achieved. In the case of the 8-Queens placement problem, this means that no two queens threaten each other in the final solution.
 
 By following these steps, the VNS algorithm can efficiently optimize the objective function of the 8-Queens placement problem and find a placement of eight queens on the chessboard that satisfies the problem constraints.
 
@@ -139,8 +140,8 @@ Figure 2. Slider Example
 
 In this section, we examine the behavior of the objective function _f\_obj_ during the optimization process. We focus on two key aspects:
 
-1. Comparing the performance of global optimum and optimum neighbor approaches in the optimization process using the VNS method.
-2. Analyzing the impact of the diversification parameter _k_ on the objective function for the neighborhood generated by the VNS algorithm.
+1.  Comparing the performance of global optimum and optimum neighbor approaches in the optimization process using the VNS method.
+2.  Analyzing the impact of the diversification parameter _k_ on the objective function for the neighborhood generated by the VNS algorithm.
 
 These findings provide valuable insights for the development of optimization algorithms for similar problems.
 
